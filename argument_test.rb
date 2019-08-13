@@ -48,3 +48,20 @@
 # puts "以下から一つを選んで入力してください。\n 　・title\n　 ・genre\n 　・year"
 # input = gets.chomp
 # movie_info(movie, input)
+
+#Q4 :のあとがシンボルとして扱われず、推奨されているハッシュの書き方でmovieハッシュのvalueがnilで返ってくるため、ゴリ押しで:の後をシンボル化した。
+def movie_info(movie, input)
+    puts movie[:"#{input}"]
+end
+movie = {title: "ハリーポッター", genre: "ファンタジー", year: "2001年"}
+puts "以下から一つを選んで入力してください。\n 　・title\n　 ・genre\n 　・year"
+input = gets.chomp
+movie_info(movie, input)
+
+
+
+
+
+
+
+

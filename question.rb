@@ -104,5 +104,38 @@
 # week = get_week(year, month, day)
 # puts "#{year}年#{month}月#{day}日は#{week}曜日です"
 
+#Q4
+def win 
+    puts "あなたの勝ちです"
+end
+def draw
+    puts "あいこで"
+end
+def lose
+    puts "あなたの負けです"
+end
+def janken
+    puts "[0]:グー\n[1]:チョキ\n[2]:パー"
+    player_hand = gets.to_i
+    program_hand = rand(3)
 
+    jankens = ["グー", "チョキ", "パー"]
+    puts "わたしの手：#{jankens[program_hand]}, あなたの手：#{jankens[player_hand]}"
 
+    if player_hand == program_hand
+        draw
+        return true
+    elsif (player_hand == 0 && program_hand == 1) || (player_hand == 1 && program_hand == 2) || (player_hand == 2 && program_hand == 0)
+        win
+        return false
+    else
+        lose
+        return false
+    end 
+end
+
+next_game = true
+puts "最初はグー、じゃんけん..."
+while next_game do
+    next_game = janken
+end

@@ -104,38 +104,82 @@
 # week = get_week(year, month, day)
 # puts "#{year}年#{month}月#{day}日は#{week}曜日です"
 
-#Q4
-def win 
-    puts "あなたの勝ちです"
-end
-def draw
-    puts "あいこで"
-end
-def lose
-    puts "あなたの負けです"
-end
-def janken
-    puts "[0]:グー\n[1]:チョキ\n[2]:パー"
-    player_hand = gets.to_i
-    program_hand = rand(3)
+# #Q4
+# def win 
+#     puts "あなたの勝ちです"
+# end
+# def draw
+#     puts "あいこで"
+# end
+# def lose
+#     puts "あなたの負けです"
+# end
+# def janken
+#     puts "[0]:グー\n[1]:チョキ\n[2]:パー"
+#     player_hand = gets.to_i
+#     program_hand = rand(3)
 
-    jankens = ["グー", "チョキ", "パー"]
-    puts "わたしの手：#{jankens[program_hand]}, あなたの手：#{jankens[player_hand]}"
+#     jankens = ["グー", "チョキ", "パー"]
+#     puts "わたしの手：#{jankens[program_hand]}, あなたの手：#{jankens[player_hand]}"
 
-    if player_hand == program_hand
-        draw
-        return true
-    elsif (player_hand == 0 && program_hand == 1) || (player_hand == 1 && program_hand == 2) || (player_hand == 2 && program_hand == 0)
-        win
-        return false
+#     if player_hand == program_hand
+#         draw
+#         return true
+#     elsif (player_hand == 0 && program_hand == 1) || (player_hand == 1 && program_hand == 2) || (player_hand == 2 && program_hand == 0)
+#         win
+#         return false
+#     else
+#         lose
+#         return false
+#     end 
+# end
+
+# next_game = true
+# puts "最初はグー、じゃんけん..."
+# while next_game do
+#     next_game = janken
+# end
+
+#Q5
+def input_score(a_scores)
+    score = {}
+    puts "生徒の名前を入力してください:"
+    score[:name] = gets.chomp
+    puts "得点を入力してください:"
+    score[:score] = gets.to_i
+    a_scores << score
+    return a_scores
+end 
+def result(a_scores)
+    sum = 0
+    line = "-----------------------------"
+    
+    puts line
+    a_scores = a_scores.sort{|a, b| b[:score] <=> a[:score]}
+    a_scores.each do |score|
+        puts "#{score[:name]} : #{score[:score]}点"
+        sum = sum + score[:score]
+    end
+    puts line
+    
+    puts "合計得点  :  #{sum/a_scores.length}"
+end
+
+scores = []
+while true do 
+    puts "得点を入力しますか？:[0]yes [1]no"
+    input = gets.to_i
+
+    if input == 0 
+       scores = input_score(scores)
+    elsif input == 1
+        result(scores)
+        exit
     else
-        lose
-        return false
-    end 
+        puts "入力した値は無効です"
+    end
 end
 
-next_game = true
-puts "最初はグー、じゃんけん..."
-while next_game do
-    next_game = janken
-end
+
+
+

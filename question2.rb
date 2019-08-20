@@ -95,7 +95,7 @@ while true do
         Food.show_all_calory
         exit
     else
-        puts "入力された値は無効です"
+        puts "入力された値は無効な値です"
     end
 end
 
